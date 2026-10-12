@@ -329,20 +329,5 @@ window.WORK = [
     ],
     links: [{ label: "Play it", url: "https://natepogue83.github.io/play/lootworks/" }],
     tags: ["React", "game economy", "incremental", "AI coding agents"]
-  },
-  {
-    id: "cathud",
-    section: "games",
-    kind: "Released",
-    date: "September 2026",
-    title: "CatHUD: pixel cats that live on your Windows desktop",
-    payoff:
-      "A small desktop toy, finished and put up for sale. Finishing it meant animation polish, sound, packaging and a store page.",
-    findings: [
-      "Cats sit on your desktop with idle animations and a purr that is synthesized rather than recorded.",
-      "Released on itch.io for $1, with a store banner and a demo GIF cut from 8.3 MB to 0.8 MB."
-    ],
-    links: [{ label: "itch.io page", url: "https://ycore.itch.io/cathud" }],
-    tags: ["shipped", "desktop app"]
   }
 ];
