@@ -313,19 +313,22 @@ window.WORK = [
     id: "lootbox-sim",
     section: "games",
     kind: "Game",
-    date: "2020",
-    title: "Lootbox Simulator: a clicker game that slowly turns infernal",
+    date: "2020, remade 2026",
+    title: "Lootworks: a loot-machine incremental game, remade from my 2020 Lootbox Simulator",
     payoff:
-      "A browser incremental game that mixes CS:GO-style lootbox reels with Cookie Clicker's economy. " +
-      "An early solo project, written in React, with a full economy, a progression tree and an ending.",
-    findings: [
-      "Eight box themes from Food and Dogs up to Sentient and Reaper, seven item grades from Trash to Soul, and several reels that spin at once.",
-      "Sell items for keys and upgrades, recycle trash into scrap, and sacrifice legendaries to unlock a supernatural shop.",
-      "The endgame is a choice: spend souls to automate your boxes, or keep five to win. New Game Plus multiplies your sale value for the next run.",
-      "Seven tiered achievement tracks feed back into luck and value. A remake, Lootworks, is in progress."
+      "Spin reels of collectibles, keep or sell what lands, and grow a bigger, more automated loot machine. " +
+      "It started as Lootbox Simulator, an early solo project in React from 2020. In September 2026 I remade it with AI coding agents, keeping the original mechanics and replacing the presentation. It plays in the browser and works best on a computer.",
+    images: [
+      { src: "images/lootworks.jpg", alt: "The Lootworks game screen: two spinning reels of collectible items, upgrade panels beside them, and a loot tray of finds below" }
     ],
-    links: [{ label: "Play it", url: "https://natepogue83.github.io/play/lootbox-simulator/" }],
-    tags: ["React", "game economy", "incremental"]
+    findings: [
+      "Several reels spin at once for one key each. Finds drop into a loot tray, where you sell them, lock stacks to keep, or recycle junk into scrap that crafts more keys.",
+      "Each reel upgrades with its own finds: speed paid in that reel's items, an auto-spinner unlocked with one legendary, and resale bonuses paid in gold.",
+      "26 machines across Bronze, Silver, Gold, Platinum and Diamond sections, with 126 collectibles to discover. Each section ends in an Overdrive reel that feeds ascension, which banks Golden Gears and a permanent relic.",
+      "Automated tests check that every spin pays out exactly once and that saves migrate and survive bad input, and a simulation script plays whole campaigns to tune the pacing. It is a playable prototype, not a finished game."
+    ],
+    links: [{ label: "Play it", url: "https://natepogue83.github.io/play/lootworks/" }],
+    tags: ["React", "game economy", "incremental", "AI coding agents"]
   },
   {
     id: "cathud",
