@@ -16,7 +16,7 @@ window.SITE = {
     "I'm not a software engineer and I don't claim to be one. I came to this through building games and tools with AI coding agents, " +
     "and found that the question I cared about most was whether I could trust what those agents told me: about their sources, about each other, " +
     "and about their own results. The research on this page is from the past few weeks; the builds and games go back further. " +
-    "Everything here says plainly who did what.",
+    "Everything here says plainly who did what. I'm a US citizen, based in the US and authorized to work here.",
   why:
     "Since I was a kid I've dreamed of a science-fiction future where AI and robots work as partners with people, and together we do things we once thought were impossible. I'm excited for that future, but it only happens if AI is aligned with humanity's goals, and that means we also have to decide what those goals are and what matters most to us. If we get that wrong, the results could be disastrous. I think we can get it right as long as enough people are willing to fight for it, and I want to be one of them. " +
     "The part I can work on now is small and concrete: when a model tells you where a claim came from, is it telling the truth, and can the people and models checking it tell when it isn't?",
