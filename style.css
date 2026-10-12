@@ -115,6 +115,11 @@ img { max-width: 100%; display: block; }
   font-size: clamp(1.4rem, 1.15rem + 1vw, 1.75rem); line-height: 1.18; letter-spacing: -0.02em;
 }
 .payoff { font-size: 1.05rem; line-height: 1.55; color: var(--ink-2); }
+.about { margin-top: 1rem; font-size: 0.95rem; line-height: 1.55; color: var(--ink-2); max-width: 21rem; }
+.entry.compact { padding-block: 1.75rem; gap: 0.75rem; }
+.entry.compact h3 { font-size: clamp(1.15rem, 1rem + 0.6vw, 1.35rem); }
+.entry.compact .payoff { font-size: 0.98rem; }
+.gallery.small { grid-template-columns: minmax(0, 420px); }
 
 .facts {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: 1rem 1.5rem;
@@ -216,7 +221,7 @@ img { max-width: 100%; display: block; }
   .page { grid-template-columns: 1fr; }
   .side { position: static; min-height: 0; max-height: none; overflow: visible; display: block; padding-block: 2.5rem 0; }
   .side h1 { font-size: 1.9rem; }
-  .intro, .why { max-width: var(--measure); }
+  .intro, .why, .about { max-width: var(--measure); }
   .contact { margin-top: 1.5rem; padding-top: 0; }
   .nav-side { display: none; }
   .nav-top {

@@ -1,7 +1,7 @@
 // Draws the page from SITE and WORK in work.js. You shouldn't need to edit this file.
 (function () {
   var S = window.SITE || {}, W = window.WORK || [];
-  var SECTIONS = [["experiments", "Experiments"], ["research", "Research"], ["builds", "Builds"], ["games", "Games"]];
+  var SECTIONS = [["experiments", "Experiments"], ["other", "Other work"]];
 
   function esc(t) {
     return String(t == null ? "" : t).replace(/[&<>"']/g, function (c) {
@@ -32,6 +32,7 @@
     (S.photo ? '<img class="photo" src="' + esc(S.photo) + '" alt="' + esc(S.name) + '">' : "") +
     "<div><h1>" + esc(S.name) + '</h1><p class="role">' + esc(S.role) + "</p></div></div>" +
     '<p class="intro">' + esc(S.intro) + "</p>" +
+    (S.about ? '<p class="about">' + esc(S.about) + "</p>" : "") +
     '<nav class="nav nav-side" aria-label="Sections">' + navLinks() + "</nav>" +
     '<ul class="contact">' + (S.contact || []).filter(function (c) { return c.url; }).map(function (c) {
       var ext = c.url.indexOf("mailto:") === 0 ? "" : ' target="_blank" rel="noopener"';
@@ -98,6 +99,7 @@
     return text ? '<div class="block"><h4>' + esc(title) + "</h4><p>" + esc(text) + "</p></div>" : "";
   }
   function entry(w) {
+    if (w.section === "other") return compactEntry(w);
     var facts = w.facts && w.facts.length
       ? '<dl class="facts">' + w.facts.map(function (f) { return "<div><dt>" + esc(f[0]) + "</dt><dd>" + esc(f[1]) + "</dd></div>"; }).join("") + "</dl>"
       : "";
@@ -122,6 +124,23 @@
       "<h3>" + esc(w.title) + "</h3>" +
       '<p class="payoff">' + esc(w.payoff) + "</p>" +
       facts + (w.chart ? chart(w.chart) : "") + imgs + more + foot +
+      "</article>";
+  }
+
+  function compactEntry(w) {
+    var links = w.links && w.links.length
+      ? '<ul class="links">' + w.links.map(function (l) { return "<li>" + link(l) + "</li>"; }).join("") + "</ul>"
+      : "";
+    var imgs = w.images && w.images.length
+      ? '<figure class="gallery small">' + w.images.map(function (im) {
+          return '<img src="' + esc(im.src) + '" alt="' + esc(im.alt) + '" loading="lazy">';
+        }).join("") + "</figure>"
+      : "";
+    return '<article class="entry compact" id="' + esc(w.id) + '">' +
+      '<div class="entry-meta"><span class="kind">' + esc(w.kind) + '</span><span class="date">' + esc(w.date) + "</span></div>" +
+      "<h3>" + esc(w.title) + "</h3>" +
+      '<p class="payoff">' + esc(w.payoff) + "</p>" + imgs +
+      (links ? '<div class="entry-foot">' + links + "</div>" : "") +
       "</article>";
   }
 
