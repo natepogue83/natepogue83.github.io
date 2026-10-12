@@ -324,7 +324,7 @@ window.WORK = [
       "The endgame is a choice: spend souls to automate your boxes, or keep five to win. New Game Plus multiplies your sale value for the next run.",
       "Seven tiered achievement tracks feed back into luck and value. A remake, Lootworks, is in progress."
     ],
-    links: [],
+    links: [{ label: "Play it", url: "https://natepogue83.github.io/play/lootbox-simulator/" }],
     tags: ["React", "game economy", "incremental"]
   },
   {
