@@ -199,37 +199,6 @@ window.WORK = [
     ],
     tags: ["AI-produced research", "pre-registration", "retraction", "negative results", "simulation"]
   },
-  {
-    id: "sts-ai",
-    section: "experiments",
-    kind: "Experiment",
-    date: "July 2026",
-    title: "Training a Slay the Spire 2 AI under stopping rules set in advance",
-    payoff:
-      "Slay the Spire 2 is a deck-building card game in which each run climbs floor by floor through random fights. " +
-      "AI coding agents built an agent that learned to play it. Every test of an improvement had a pass gate and a stop rule fixed in advance, so results couldn't be tuned after the fact, and work stopped when the tests failed. " +
-      "It is a small exercise in not fooling yourself with an agent, and in keeping an agent's future information out of its training data.",
-    facts: [
-      ["Model", "Set-based network that scores legal moves"],
-      ["Training", "Imitation of a rule-based strategy, then DAgger"],
-      ["Search test", "200 paired games, gate fixed in advance"],
-      ["Tests", "162 passing"]
-    ],
-    findings: [
-      "The learned policy matched the rule-based strategy's move on 83% of held-out combat decisions, and 86% after a round of DAgger (retraining on positions the agent reached itself, labeled by the strategy).",
-      "Adding one-step look-ahead search made it worse: mean floor reached fell from 8.69 to 8.21 (paired difference −0.48, 95% interval −0.72 to −0.24), and it was worse for every character. The pre-set gate failed, so the configuration was dropped without re-tuning.",
-      "A test of replaying games with identical randomness found that repeat branches reproduced exactly in 48 of 48 cases. The pre-set gate still failed at the shortest horizons, so the longer horizons that passed were not picked after the fact.",
-      "A code audit by four parallel agents found a bug that mislabeled potions after one was used and a resume bug that could stall runs, and made leakage of future cards into the training data measurable."
-    ],
-    method: [
-      "The code was written by OpenAI Codex, with a Claude model consulted at checkpoints, under my direction. I set the questions, the gates and the budgets."
-    ],
-    limits:
-      "The agent doesn't yet beat its own rule-based teacher. The search result rules out this search setup, not search in general. The repository's history starts in one large commit, so only the later freeze-then-result commits are checkable in git.",
-    links: [{ label: "Code and benchmarks", url: "https://github.com/natepogue83/sts2-ai" }],
-    tags: ["agents", "benchmarks", "pre-set gates", "negative results"]
-  },
-
   // Shorter entries. These show a title, one paragraph and links.
   {
     id: "religion-themes",
