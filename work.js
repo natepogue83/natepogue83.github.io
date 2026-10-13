@@ -8,32 +8,27 @@ window.SITE = {
   name: "Nathan Pogue",
   role: "AI safety research, done by directing AI agents",
   intro:
-    "I run small experiments on whether AI models are honest about where their information came from, " +
-    "and on what it takes to trust research that AI agents produce. I don't write code. I choose the questions, work out the designs with AI agents, " +
-    "have them build the experiments and their graders, bring in a separate AI reviewer, and check every claim against the data before it goes out. " +
-    "Two of the studies below were pre-registered, and several results are negative.",
+    "I test whether AI models are honest about where their information came from, and what it takes to trust research that AI agents produce. " +
+    "I choose the questions, design the studies and decide what the results are allowed to claim. " +
+    "Claude and Codex build the experiments and graders under my direction, a separate AI reviewer audits each one, and I check every claim against the data before it goes out.",
   about:
     "I founded Georgetown Business Systems, an AI consulting company, in 2026, where I build AI phone receptionists for local businesses. Before that I was a game designer at S Tier Studios from 2018 to 2021, where we shipped Cloud Runner and Fivehead Fever. I went on to run communications for a nonprofit, WHUMC (2021 to 2022), and to manage a QuikTrip store (2022 to 2024). Since 2024 I have worked as a contractor for Handshake and Appen. Building games and tools with AI coding agents led me to the question I care about most: whether I can trust what those agents tell me about their sources, about each other, and about their own results. My research on that goes back about a year, and every page here states who did what. I'm a US citizen, based in the US and authorized to work here.",
   why:
     "I have always wanted to know how consciousness arises and what place it has in the universe. Philosophy and religion are humanity's longest-running attempts to answer that, and to work out how minds should be trusted, judged and kept honest. I study those traditions for working logic, not just ideas. Scholars spent centuries building ways to check whether a reported saying really came from its source, and whether a witness could be believed. Those same questions now apply to machines. When a model tells you where a claim came from, is it telling the truth, and can the people and models checking it tell when it isn't? That is where I start. The future I want is one where AI and people do things together that neither could do alone, and that only happens if we get these foundations right.",
-  proof: [
+  highlights: [
     {
-      "big": "9% to 33%",
-      "text": "Every model sometimes cited a real quote for an answer it got from memory. A labeled source chain cut this to zero for four of the five.",
-      "id": "isnad",
-      "link": "The citation study"
+      "label": "Review",
+      "text": "Caught an AI agent's false headline",
+      "id": "wobblins-study"
     },
     {
-      "big": "Caught and retracted",
-      "text": "The AI agent's first headline was written after its prediction failed. Review caught it, and I retracted it.",
-      "id": "wobblins-study",
-      "link": "The artificial-life study"
+      "label": "Rigor",
+      "text": "Three pre-registered tests",
+      "id": "isnad-hops"
     },
     {
-      "big": "61% vs 14%",
-      "text": "Watching keeps a tradition alive: fire survived in 61% of colonies with watching, 14% without.",
-      "id": "wobblins-study",
-      "link": "The artificial-life study"
+      "label": "Founder",
+      "text": "Georgetown Business Systems"
     }
   ],
   next: {
@@ -73,13 +68,14 @@ window.WORK = [
     featured: true,
     kind: "Experiment",
     date: "October 2026",
-    title: "Do AI models tell the truth about where their answers came from?",
+    title: "Isnad: do AI models tell the truth about where their answers came from?",
     payoff:
       "If we want to oversee models by what they tell us about their own reasoning and sources, that account has to be honest. " +
       "Document chat tools show citations, and people trust a cited answer more. This study measured how often that citation is real document text attached to an " +
       "answer the model actually got from memory, and tested a prompt change that removes most of it without any extra API calls.",
     facts: [
       ["Models", "5 (Claude Opus, Sonnet, Haiku 5.5; GPT-5.5; GPT-5.4 mini)"],
+      ["Why \"Isnad\"", "The chain of narrators hadith scholars attached to every report so it could be judged by its weakest link"],
       ["Responses", "5,880 scored, plus a 1,080-call follow-up"],
       ["Pre-registered", "The follow-up; the main run was not"],
       ["API cost", "About $19 in total"],
@@ -130,7 +126,7 @@ window.WORK = [
     featured: true,
     kind: "Pre-registered pilot",
     date: "October 2026",
-    title: "Keeping track of who said what when Claude rewrites its own handoff notes",
+    title: "Isnad hops: keeping track of who said what when Claude rewrites its own handoff notes",
     payoff:
       "A follow-up to the citation study above, aimed at agents on long tasks. They pass notes to themselves and to other agents, and if a colleague's unchecked claim " +
       "turns into \"I saw this\" along the way, the next agent may act on it as if it had been checked, and a monitor reading the notes can't tell. In this pilot, Claude models rewrote notes twice, " +
@@ -185,7 +181,7 @@ window.WORK = [
     section: "experiments",
     kind: "Pre-registered study",
     date: "October 2026",
-    title: "Catching an AI agent's false headline: a pre-registered artificial-life study",
+    title: "Wobblins: catching an AI agent's false headline in a pre-registered artificial-life study",
     payoff:
       "Claude built a small simulated world under my direction. Its creatures learn from experience and by watching each other, inherit their temperament, and keep a fire going across generations. The agent's first write-up claimed a result. A separate AI reviewer showed that the headline had been written after the real prediction failed, that it rested on buggy measurements, and that it repeated a model's false anecdote as fact. I retracted it, stopped a run that had started before its review was finished, and re-ran the study on 256 fresh seeds with the predictions locked in git first. The clean run found something real: watching others is what keeps a tradition alive. With watching turned off, the fire survived in 14% of colonies instead of 61%. The shielding prediction was not supported, and the page reports that plainly.",
     images: [

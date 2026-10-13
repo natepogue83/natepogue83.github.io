@@ -38,9 +38,10 @@
     '<p class="role">' + esc(S.role) + "</p>" +
     '<p class="intro">' + esc(S.intro) + "</p>" +
     '<ul class="contact">' + contacts + "</ul></div>" +
-    (S.proof && S.proof.length
-      ? '<ul class="proof" aria-label="Key results">' + S.proof.map(function (p) {
-          return '<li><a class="proof-card" href="#' + esc(p.id) + '"><strong>' + esc(p.big) + "</strong><span>" + esc(p.text) + '</span><em>' + esc(p.link || "Read the entry") + "</em></a></li>";
+    (S.highlights && S.highlights.length
+      ? '<ul class="factrow" aria-label="Highlights">' + S.highlights.map(function (f) {
+          var t = esc(f.text);
+          return '<li><span class="label">' + esc(f.label) + "</span>" + (f.id ? '<a href="#' + esc(f.id) + '">' + t + "</a>" : "<span>" + t + "</span>") + "</li>";
         }).join("") + "</ul>"
       : "") +
     (S.about ? '<div class="about"><h2 class="label">About</h2><p>' + esc(S.about) + "</p></div>" : "");
