@@ -355,20 +355,6 @@ window.WORK = [
     ]
   },
   {
-    "id": "office-studio",
-    "section": "other",
-    "kind": "Build",
-    "date": "August 2026",
-    "title": "Office Studio: a local workspace where AI agents staff projects, with an assistant that only remembers what its owner approves",
-    "payoff": "A personal prototype built with AI coding agents. Teams of agents get roles, reviewer loops and approval checkpoints. Alongside them, an assistant stores only claims the owner approves, each quoting the owner's own words; memory handed to an agent is fenced as untrusted data, anything touching authority fails closed, and the pipeline that improves the assistant can at most propose a candidate for the owner to promote. The open question, whether owner-approved memory makes the assistant better in real use, hasn't been tested. Not public.",
-    "links": [],
-    "tags": [
-      "agents",
-      "memory",
-      "safety boundaries"
-    ]
-  },
-  {
     "id": "ai-radar",
     "section": "other",
     "kind": "Tool",
