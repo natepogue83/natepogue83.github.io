@@ -35,50 +35,50 @@
 (function () {
   var html =
   '<section class="sec next fit" id="fit"><div class="sec-head"><h2>The posting, line by line</h2></div>' +
-  '<p class="lead">Each heading is a line from the role description. Under it is what I have done that matches, with the evidence linked, or a plain note that I haven\'t.</p>' +
+  '<p class="lead">Each heading is a line from the role description. Under it is the work that answers it, with the evidence linked. Where I have a gap, I say so once.</p>' +
 
   '<p class="ask">Run evaluations for launch readiness and flag regressions or unexpected model behavior</p>' +
   '<p>The <a href="#isnad">citation study</a> scored 5,880 responses across five models from two labs on one measure: how often a model attaches real document text to an answer it actually got from memory. ' +
-  'The <a href="#isnad-hops">handoff-notes pilot</a> found a regression nobody was looking for: Haiku\'s plain notes dropped the "the user told me" label on about half of user-sourced facts, while the other models kept it. ' +
-  'In the <a href="#wobblins-study">artificial-life study</a>, the unexpected behavior was the agent\'s own write-up, which had rewritten its headline after the real prediction failed. I retracted it.</p>' +
+  'The <a href="#isnad-hops">handoff-notes pilot</a> surfaced a regression nobody was looking for: Haiku\'s plain notes dropped the "the user told me" label on about half of user-sourced facts, while the other models kept it. ' +
+  'In the <a href="#wobblins-study">artificial-life study</a>, the unexpected behavior was the agent\'s own write-up, which had rewritten its headline after the real prediction failed. I caught it through review and retracted it.</p>' +
 
   '<p class="ask">Work with policy and domain experts across the eval lifecycle, from scoping risks to keeping evals current</p>' +
-  '<p>Every study here went through a separate AI reviewer before and after the run, and its findings are kept as errata and decision logs rather than folded away. ' +
-  'When the first citation design confounded the instruction with the citation format, I ran a <a href="https://github.com/natepogue83/isnad/blob/main/isnad-experiment/MATCHED.md" target="_blank" rel="noopener">matched follow-up</a> that held the instruction constant, and it changed the conclusion for one of the two models.</p>' +
+  '<p>I put every study through a separate AI reviewer before and after the run, and I keep its findings as errata and decision logs. ' +
+  'When the first citation design confounded the instruction with the citation format, I designed a <a href="https://github.com/natepogue83/isnad/blob/main/isnad-experiment/MATCHED.md" target="_blank" rel="noopener">matched follow-up</a> that held the instruction constant, and it changed the conclusion for one of the two models.</p>' +
 
   '<p class="ask">Help manage evaluation outcomes and drive mitigations</p>' +
-  '<p>The citation study didn\'t stop at the measurement. It tested a source-label prompt package as the mitigation, with no extra API calls, and it cut false citations to zero for four of the five models, though for two of them it mostly moved a disclosure they were already writing elsewhere in the answer. ' +
-  'The handoff-notes regression was fixed by one added sentence in the prompt, measured before and after.</p>' +
+  '<p>I took the citation study past measurement to a mitigation: a source-label prompt package with no extra API calls. It cut false citations to zero for four of the five models. For two of them it mostly moved a disclosure they already wrote elsewhere into a field a product can check. ' +
+  'I fixed the handoff-notes regression with one added sentence in the prompt, measured before and after.</p>' +
 
   '<p class="ask">Improve eval quality so evaluations stay high-signal as models improve</p>' +
-  '<p>Two examples of saying what an eval can\'t show. The citation study\'s quote check catches 100% of false citations, and the write-up says that number is built into how the items were made, not evidence. ' +
+  '<p>A high-signal eval says what it can\'t show. The citation study\'s quote check catches 100% of false citations, and the write-up says that number is built into how the items were made, not evidence. ' +
   'The artificial-life study\'s pre-registration went through three rounds of review, with the predictions tagged in git before the confirmatory run on 256 fresh seeds, so the result can\'t be read back into the hypothesis.</p>' +
 
   '<p class="ask">Build frameworks for product-specific evals, and design tooling that lets non-technical users create and iterate on evals</p>' +
-  '<p>I am the non-technical user. I don\'t write code; every grader, harness and dashboard on this page was built by Claude Code and Codex under my direction, and I spent the past month learning exactly where that workflow breaks: ' +
-  'where the agent grades its own work too kindly, where a label error hides in a scorer, where a run needs to be stopped unread. That is the experience I\'d bring to tooling for people who write evals without writing code.</p>' +
+  '<p>I build evals the way a non-technical user would: I write the specs, rubrics and checks, and Claude Code and Codex build every grader, harness and dashboard on this page under my direction. ' +
+  'Running that loop daily showed me where it breaks: the agent grades its own work too kindly, a label error hides in a scorer, a run has to be stopped unread. I know what self-serve eval tooling needs to catch because I have caught those failures myself.</p>' +
 
   '<p class="ask">Write and maintain documentation for eval creation, execution, and interpretation</p>' +
-  '<p>Each study has a results file, a findings write-up for readers, a <a href="https://github.com/natepogue83/WobblesExperiment/blob/main/lab/research/SUMMARY.md" target="_blank" rel="noopener">one-page plain-language summary</a>, and a decision log, including a section on what I got wrong; the pre-registered ones have their predictions tagged in git. ' +
+  '<p>Each study has a results file, a findings write-up for readers, a <a href="https://github.com/natepogue83/WobblesExperiment/blob/main/lab/research/SUMMARY.md" target="_blank" rel="noopener">one-page plain-language summary</a>, and a decision log with a section on what I got wrong. The pre-registered ones have their predictions tagged in git. ' +
   'The reproduction steps for the artificial-life study were tested from a fresh clone.</p>' +
 
   '<p class="ask">Trust and safety, content operations, policy enforcement, or similar operational experience</p>' +
-  '<p>Not at a tech company. My operational experience is a store manager role at QuikTrip (2022 to 2024), communications director at a nonprofit (2021 to 2022), and shipping two games at a small studio (2018 to 2021). ' +
-  'The past two years were contract AI training data work for Handshake and Appen. <span class="gap">I have not held a trust-and-safety title.</span></p>' +
+  '<p>I ran a QuikTrip store as manager (2022 to 2024). I was communications director at a nonprofit (2021 to 2022) and shipped two games at a small studio (2018 to 2021). ' +
+  'Since 2024 I have worked as a contractor for Handshake and Appen, and in 2026 I founded Georgetown Business Systems, where I build AI phone receptionists for local businesses. <span class="gap">I have not held a trust-and-safety title at a tech company.</span></p>' +
 
   '<p class="ask">Ambiguous, fast-moving settings; build processes from scratch; strong program management habits</p>' +
-  '<p>The research process on this page didn\'t exist a month ago. Pre-registration, an independent reviewer, errata, a budget per run, a public record: I set each of those up because something went wrong without it. ' +
-  'The studies ran in parallel on under fifty dollars of API credit, with the cost measured before every larger run.</p>' +
+  '<p>I built the research process on this page from scratch in one month. Pre-registration, an independent reviewer, errata, a budget per run, a public record: I added each one when I saw a failure it would have prevented. ' +
+  'I ran the studies in parallel on under fifty dollars of API credit, with the cost measured before every larger run.</p>' +
 
   '<p class="ask">Eager to adopt AI-assisted tools such as Claude Code</p>' +
-  '<p>All of this was done in Claude Code, daily, with a second agent as reviewer. It is the only way I work.</p>' +
+  '<p>I did all of this in Claude Code, daily, with a second agent as reviewer. It is how I work.</p>' +
 
   '<p class="ask">Communicate clearly in writing and make judgment calls with incomplete information</p>' +
-  '<p>The write-ups linked here are the evidence for the first part. For the second: a confirmatory run had started before the reviewer\'s audit was finished, so I stopped it and never read its output, and the next decision couldn\'t be shaped by a result I\'d already seen.</p>' +
+  '<p>The write-ups linked here show the first part. For the second: a confirmatory run started before the reviewer\'s audit was finished. I stopped it and never read its output, so no later decision could be shaped by a result I had already seen.</p>' +
 
   '<p class="ask">Strong candidates may also have: SOPs and runbooks, data tools, sensitive content</p>' +
-  '<p>The reviewer prompts and reproduction steps in each repo are runbooks in all but name. ' +
-  '<span class="gap">I use spreadsheets; I don\'t know SQL or Python. The timed coding test would show that, so I\'d rather say it here.</span></p>' +
+  '<p>I wrote the reviewer prompts and reproduction steps in each repo as runbooks. ' +
+  '<span class="gap">I work in spreadsheets and direct Claude Code for SQL and Python.</span></p>' +
 
   '<div class="note"><p>The main version of this portfolio, with the same work and no mapping, is at <a href="../../">natepogue83.github.io</a>.</p></div>' +
   '</section>';
