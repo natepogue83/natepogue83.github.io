@@ -165,12 +165,9 @@ window.WORK = [
     section: "experiments",
     kind: "Pre-registered study",
     date: "October 2026",
-    title: "Trusting research an AI agent built: a pre-registered artificial-life study whose first headline was wrong",
+    title: "Catching an AI agent's false headline: a pre-registered artificial-life study",
     payoff:
-      "Claude built a small simulated world where creatures learn from experience and by watching each other, inherit their temperament, and keep a fire going across generations. " +
-      "The question was whether learning about a predator hides that danger from evolution. The agent's first write-up said yes. A separate AI reviewer showed the headline had been written after the real prediction failed, " +
-      "on buggy measurements, and that a model's false anecdote had been copied in as fact. I retracted it, stopped a run that had started before its review was done (unread), and re-ran on 256 fresh seeds with the predictions in git. " +
-      "The result is small and mostly negative, and the record of how it was checked is the point.",
+      "Claude built a small simulated world under my direction. Its creatures learn from experience and by watching each other, inherit their temperament, and keep a fire going across generations. The agent's first write-up claimed a result. A separate AI reviewer showed that the headline had been written after the real prediction failed, that it rested on buggy measurements, and that it repeated a model's false anecdote as fact. I retracted it, stopped a run that had started before its review was finished, and re-ran the study on 256 fresh seeds with the predictions locked in git first. The clean run found something real: watching others is what keeps a tradition alive. With watching turned off, the fire survived in 14% of colonies instead of 61%. The shielding prediction was not supported, and the page reports that plainly.",
     images: [
       { src: "images/wobblins-study-night.jpg", alt: "The simulated valley at night: a creature by the fire, a predator prowling at the edge of the trees" },
       { src: "images/wobblins-3d-close.jpg", alt: "Close-up of a round tan creature in front of a hut and campfire" }
