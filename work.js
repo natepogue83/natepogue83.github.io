@@ -19,12 +19,21 @@ window.SITE = {
   next: {
     label: "What I'd work on next",
     title: "Trust creep: do AI monitors go easier on an agent with a clean track record?",
-    text:
-      "In AI control, a trusted but weaker model watches a stronger one for bad actions. The question is whether that monitor's suspicion drops as the agent builds up a good record, " +
-      "because a misaligned agent could exploit oversight that relaxes as it earns trust. The design: monitors review the same planted policy violations in a sandbox of devops tasks, " +
-      "with and without a stated or demonstrated clean record, to measure whether the record lowers suspicion, and whether a second check that never sees the record catches what the record-aware monitor lets through. " +
-      "It runs on API calls in a sandbox. With open-weight monitors it costs about $300, or about $800 with every factor fully crossed; with flagship models as monitors as well, about $2.5k to $7k. Two further factors, record length and where the record is shown, are not yet in that budget. " +
-      "It builds on existing control work on trusted monitoring. A full prior-work search comes first."
+    beats: [
+      {
+        "head": "The risk.",
+        "text": "In AI control, a weaker trusted model watches a stronger one for bad actions. If that monitor relaxes as the agent builds a clean record, a misaligned agent can earn trust and then spend it."
+      },
+      {
+        "head": "The test.",
+        "text": "Monitors review the same planted policy violations across a sandbox of devops tasks, with and without a clean record. I measure whether the record lowers suspicion, and whether a second check that never sees the record catches what the first one lets through."
+      },
+      {
+        "head": "Why it matters.",
+        "text": "If trust creep is real, oversight gets weaker exactly when it is needed most. This builds on existing trusted-monitoring work, and a full prior-work search comes first."
+      }
+    ],
+    facts: [["Open-weight monitors", "About $300"], ["Every factor crossed", "About $800"], ["With flagship monitors", "About $2.5k to $7k"], ["Not yet budgeted", "Record length, where the record is shown"]]
   },
 
   // Leave url empty to hide a contact link.

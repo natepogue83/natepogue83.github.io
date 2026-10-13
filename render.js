@@ -28,8 +28,8 @@
 
   document.title = (S.name || "Portfolio") + " · Portfolio";
   // Image folder relative to this script, so the tailored page under for/<job>/ finds the same files.
-  var me = document.querySelector('script[src$="render.js"]');
-  var IMG = me ? me.getAttribute("src").replace(/render\.js$/, "") + "images/" : "images/";
+  var me = document.querySelector('script[src*="render.js"]');
+  var IMG = me ? me.getAttribute("src").replace(/render\.js(\?.*)?$/, "") + "images/" : "images/";
   var contacts = (S.contact || []).filter(function (c) { return c.url; }).map(function (c) {
     var ext = c.url.indexOf("mailto:") === 0 ? "" : ' target="_blank" rel="noopener"';
     return '<li><a href="' + esc(c.url) + '"' + ext + ">" + esc(c.label) + "</a></li>";
@@ -167,7 +167,16 @@
     }).join("") +
     (S.next
       ? '<section class="sec next band reveal" id="next">' + head(esc(S.next.label)) +
-        (S.next.title ? "<h3>" + esc(S.next.title) + "</h3>" : "") + "<p>" + esc(S.next.text) + "</p></section>"
+        (S.next.title ? "<h3>" + esc(S.next.title) + "</h3>" : "") +
+        (S.next.beats && S.next.beats.length
+          ? '<div class="beats">' + S.next.beats.map(function (b, i) {
+              return '<div class="beat"><span class="beat-num" aria-hidden="true">0' + (i + 1) + '</span><h4>' + esc(b.head) + "</h4><p>" + esc(b.text) + "</p></div>";
+            }).join("") + "</div>"
+          : "") +
+        (S.next.text ? "<p>" + esc(S.next.text) + "</p>" : "") +
+        (S.next.facts && S.next.facts.length
+          ? '<dl class="facts next-facts">' + S.next.facts.map(function (f) { return '<div class="chip"><dt>' + esc(f[0]) + "</dt><dd>" + esc(f[1]) + "</dd></div>"; }).join("") + "</dl>"
+          : "") + "</section>"
       : "") +
     (S.why ? '<section class="sec why reveal" id="why">' + head("Why I do this") + "<p>" + esc(S.why) + "</p></section>" : "") +
     "<footer>© " + new Date().getFullYear() + " · Numbers on this page come from each project's saved results and run logs. Links marked coming soon are not public yet.</footer>";

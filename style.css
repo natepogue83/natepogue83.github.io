@@ -319,3 +319,16 @@ img { max-width: 100%; display: block; }
   .entry-meta .flag { margin-left: 0; }
   .sec-head { margin-bottom: 1.4rem; }
 }
+
+/* What's next: three beats and cost chips on the dark band */
+.band .beats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; margin-top: 2rem; }
+.band .beat { padding-top: 1.1rem; border-top: 1px solid rgba(244, 241, 234, 0.22); }
+.band .beat-num { font-family: var(--font-mono); font-size: 0.75rem; color: #f0a17f; }
+.band .beat h4 { margin-top: 0.4rem; font-family: var(--font-display); font-weight: 600; font-size: 1.3rem; line-height: 1.2; color: var(--bg); }
+.band .beat p { margin-top: 0.6rem; font-size: 0.98rem; line-height: 1.65; color: #d8d2c6; }
+.band .next-facts { margin-top: 2.25rem; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); }
+.band .chip { background: rgba(244, 241, 234, 0.06); border-color: rgba(244, 241, 234, 0.16); }
+.band .chip dt { color: #b9b2a5; }
+.band .chip dd { color: var(--bg); }
+@media (max-width: 900px) { .band .beats { grid-template-columns: 1fr; gap: 0.5rem; } }
+@media (max-width: 600px) { .band .next-facts { grid-template-columns: 1fr 1fr; } }
