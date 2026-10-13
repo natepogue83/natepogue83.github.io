@@ -263,22 +263,7 @@ window.WORK = [
     links: [],
     tags: ["robotics", "connectomics"]
   },
-  {
-    id: "s-tier-games",
-    section: "other",
-    kind: "Shipped games",
-    date: "2018 to 2021",
-    title: "Cloud Runner and Fivehead Fever, as game designer at S Tier Studios",
-    payoff:
-      "Three years as a game designer at a small studio. Cloud Runner is a 2D pixel-art infinite runner with a story, built in Unity for mobile; " +
-      "Fivehead Fever is a Unity arcade stacking game made for a game jam. The studio has since shut down, so the store listings are gone; the browser builds on itch.io still run.",
-    links: [
-      { label: "Cloud Runner (browser demo)", url: "https://stiergames.itch.io/garys-world-cloud-runner-demo" },
-      { label: "Fivehead Fever (play in browser)", url: "https://stiergames.itch.io/fivehead-fever" }
-    ],
-    tags: ["game design", "Unity", "mobile"]
-  },
-  {
+{
     id: "lootbox-sim",
     section: "other",
     kind: "Game",
