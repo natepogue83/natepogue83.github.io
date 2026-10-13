@@ -13,9 +13,11 @@ window.SITE = {
     "have them build the experiments and their graders, bring in a separate AI reviewer, and check every claim against the data before it goes out. " +
     "Two of the studies below were pre-registered, and several results are negative.",
   about:
-    "I'm not a software engineer and I don't claim to be one. I came to this through building games and tools with AI coding agents, " +
-    "and found that the question I cared about most was whether I could trust what those agents told me: about their sources, about each other, " +
-    "and about their own results. The research on this page is from the past few weeks; the builds and games go back further. " +
+    "I'm not a software engineer and I don't claim to be one. I was a game designer at S Tier Studios from 2018 to 2021, where we shipped Cloud Runner and Fivehead Fever, until the studio closed. " +
+    "After that I was communications director at a nonprofit, WHUMC (2021 to 2022), and a store manager at QuikTrip (2022 to 2024). " +
+    "For the past two years I've done AI training work for Handshake and Appen: rating model outputs, writing rubrics, and looking for the ways models go wrong. " +
+    "Building games and tools with AI coding agents on the side led me to the question I cared about most: whether I could trust what those agents told me, about their sources, about each other, " +
+    "and about their own results. The research on this page is from the past few weeks; the games go back further. " +
     "Everything here says plainly who did what. I'm a US citizen, based in the US and authorized to work here.",
   why:
     "Since I was a kid I've dreamed of a science-fiction future where AI and robots work as partners with people, and together we do things we once thought were impossible. I'm excited for that future, but it only happens if AI is aligned with humanity's goals, and that means we also have to decide what those goals are and what matters most to us. If we get that wrong, the results could be disastrous. I think we can get it right as long as enough people are willing to fight for it, and I want to be one of them. " +
@@ -265,6 +267,21 @@ window.WORK = [
       "The robot's camera excites the fly's looming-detector neurons and the fly's own descending neurons choose the robot's actions. Built with AI coding agents. Not public.",
     links: [],
     tags: ["robotics", "connectomics"]
+  },
+  {
+    id: "s-tier-games",
+    section: "other",
+    kind: "Shipped games",
+    date: "2018 to 2021",
+    title: "Cloud Runner and Fivehead Fever, as game designer at S Tier Studios",
+    payoff:
+      "Three years as a game designer at a small studio. Cloud Runner is a 2D pixel-art infinite runner with a story, built in Unity for mobile; " +
+      "Fivehead Fever is a Unity arcade stacking game made for a game jam. The studio has since shut down, so the store listings are gone; the browser builds on itch.io still run.",
+    links: [
+      { label: "Cloud Runner (browser demo)", url: "https://stiergames.itch.io/garys-world-cloud-runner-demo" },
+      { label: "Fivehead Fever (play in browser)", url: "https://stiergames.itch.io/fivehead-fever" }
+    ],
+    tags: ["game design", "Unity", "mobile"]
   },
   {
     id: "lootbox-sim",
