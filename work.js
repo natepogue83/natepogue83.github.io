@@ -15,22 +15,6 @@ window.SITE = {
     "I founded Georgetown Business Systems, an AI consulting company, in 2026, where I build AI phone receptionists for local businesses. Before that I was a game designer at S Tier Studios from 2018 to 2021, where we shipped Cloud Runner and Fivehead Fever. I went on to run communications for a nonprofit, WHUMC (2021 to 2022), and to manage a QuikTrip store (2022 to 2024). Since 2024 I have worked as a contractor for Handshake and Appen. Building games and tools with AI coding agents led me to the question I care about most: whether I can trust what those agents tell me about their sources, about each other, and about their own results. My research on that goes back about a year, and every page here states who did what. I'm a US citizen, based in the US and authorized to work here.",
   why:
     "I have always wanted to know how consciousness arises and what place it has in the universe. Philosophy and religion are humanity's longest-running attempts to answer that, and to work out how minds should be trusted, judged and kept honest. I study those traditions for working logic, not just ideas. Scholars spent centuries building ways to check whether a reported saying really came from its source, and whether a witness could be believed. Those same questions now apply to machines. When a model tells you where a claim came from, is it telling the truth, and can the people and models checking it tell when it isn't? That is where I start. The future I want is one where AI and people do things together that neither could do alone, and that only happens if we get these foundations right.",
-  highlights: [
-    {
-      "label": "Review",
-      "text": "Caught an AI agent's false headline",
-      "id": "wobblins-study"
-    },
-    {
-      "label": "Rigor",
-      "text": "Three pre-registered tests",
-      "id": "isnad-hops"
-    },
-    {
-      "label": "Founder",
-      "text": "Georgetown Business Systems"
-    }
-  ],
   next: {
     label: "What I'd work on next",
     title: "Trust creep: do AI monitors go easier on an agent with a clean track record?",
