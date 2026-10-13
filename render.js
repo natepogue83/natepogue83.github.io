@@ -27,9 +27,6 @@
   }
 
   document.title = (S.name || "Portfolio") + " · Portfolio";
-  // Image folder relative to this script, so the tailored page under for/<job>/ finds the same files.
-  var me = document.querySelector('script[src*="render.js"]');
-  var IMG = me ? me.getAttribute("src").replace(/render\.js(\?.*)?$/, "") + "images/" : "images/";
   var contacts = (S.contact || []).filter(function (c) { return c.url; }).map(function (c) {
     var ext = c.url.indexOf("mailto:") === 0 ? "" : ' target="_blank" rel="noopener"';
     return '<li><a href="' + esc(c.url) + '"' + ext + ">" + esc(c.label) + "</a></li>";
@@ -41,10 +38,11 @@
     '<p class="role">' + esc(S.role) + "</p>" +
     '<p class="intro">' + esc(S.intro) + "</p>" +
     '<ul class="contact">' + contacts + "</ul></div>" +
-    '<div class="collage" aria-hidden="true">' +
-    ["wobblins-study-night.jpg", "lootworks.jpg", "wobblins-2d-village.jpg"].map(function (f, i) {
-      return '<img class="c' + i + '" src="' + IMG + f + '" alt="">';
-    }).join("") + "</div>" +
+    (S.proof && S.proof.length
+      ? '<ul class="proof" aria-label="Key results">' + S.proof.map(function (p) {
+          return '<li><a class="proof-card" href="#' + esc(p.id) + '"><strong>' + esc(p.big) + "</strong><span>" + esc(p.text) + '</span><em>' + esc(p.link || "Read the entry") + "</em></a></li>";
+        }).join("") + "</ul>"
+      : "") +
     (S.about ? '<div class="about"><h2 class="label">About</h2><p>' + esc(S.about) + "</p></div>" : "");
   document.getElementById("navtop").innerHTML = '<a class="mark" href="#top">' + esc(S.name) + "</a>" + '<div class="nav nav-links">' + navLinks() + "</div>";
 

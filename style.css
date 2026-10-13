@@ -1,4 +1,4 @@
-/* Editorial layout: a sticky top bar, a large hero with an image collage, then the work as cards.
+/* Editorial layout: a sticky top bar, a large hero with three proof-point cards, then the work as cards.
    Type: Fraunces for display, Hanken Grotesk for reading, Plex Mono for numbers.
    Color: warm paper and ink with one accent (vermilion). The chart keeps its own two data colors. */
 :root {
@@ -99,11 +99,6 @@ img { max-width: 100%; display: block; }
 .contact a::after { content: "\2197"; font-size: 0.8em; }
 .contact a[href^="mailto:"]::after { content: none; }
 
-.collage { position: relative; aspect-ratio: 4 / 4.4; }
-.collage img { position: absolute; object-fit: cover; border-radius: var(--radius); box-shadow: 0 24px 48px -24px rgba(40, 30, 10, 0.45); border: 4px solid var(--surface); }
-.collage .c0 { left: 0; top: 0; width: 78%; aspect-ratio: 4 / 3; transform: rotate(-2deg); z-index: 2; }
-.collage .c1 { right: 0; top: 40%; width: 62%; aspect-ratio: 4 / 3; transform: rotate(3deg); z-index: 3; }
-.collage .c2 { left: 6%; bottom: 0; width: 46%; aspect-ratio: 1; transform: rotate(-4deg); z-index: 1; }
 
 .about {
   grid-column: 1 / -1; display: grid; grid-template-columns: 12rem minmax(0, 1fr); gap: 1rem 4rem;
@@ -276,9 +271,6 @@ img { max-width: 100%; display: block; }
   .entry.featured:hover { box-shadow: inset 4px 0 0 var(--accent), 0 18px 40px -28px rgba(40, 30, 10, 0.35); }
   .media img { transition: transform 0.6s var(--ease); }
   .card:hover .media img { transform: scale(1.025); }
-  .collage img { transition: transform 0.5s var(--ease); }
-  .collage:hover .c0 { transform: rotate(-3deg) translateY(-6px); }
-  .collage:hover .c1 { transform: rotate(4deg) translateY(-4px); }
   .more summary i::after { transition: transform 0.25s var(--ease); }
   .nav-links a, .contact a, .links a { transition: background-color 0.15s ease, color 0.15s ease; }
 }
@@ -286,11 +278,6 @@ img { max-width: 100%; display: block; }
 /* Tablet and phone */
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; gap: 2rem; padding-block: 2.5rem 2rem; }
-  .collage { order: -1; aspect-ratio: 16 / 9; max-width: 34rem; width: 100%; }
-  .collage .c2 { display: none; }
-  .collage .c0 { width: 68%; }
-  .collage .c1 { width: 52%; top: 28%; }
-  .collage .c2 { width: 34%; left: 10%; }
   .about { grid-template-columns: 1fr; gap: 0.6rem; padding-top: 1.75rem; }
   .grid-other { grid-template-columns: 1fr; }
   .entry.compact.has-media { grid-template-columns: 1fr; }
@@ -332,3 +319,23 @@ img { max-width: 100%; display: block; }
 .band .chip dd { color: var(--bg); }
 @media (max-width: 900px) { .band .beats { grid-template-columns: 1fr; gap: 0.5rem; } }
 @media (max-width: 600px) { .band .next-facts { grid-template-columns: 1fr 1fr; } }
+
+/* Hero proof points: three linked stat cards */
+.proof { list-style: none; padding: 0; display: grid; gap: 0.75rem; }
+.proof-card {
+  display: grid; gap: 0.45rem; padding: 1.25rem 1.4rem; border-radius: var(--radius);
+  background: var(--surface); border: 1px solid var(--line); color: var(--ink); text-decoration: none;
+}
+.proof li:first-child .proof-card { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+.proof-card strong { font-family: var(--font-display); font-weight: 650; font-variation-settings: "opsz" 144; font-size: clamp(1.9rem, 1.4rem + 1.6vw, 2.6rem); line-height: 1; letter-spacing: -0.03em; color: var(--accent); }
+.proof li:first-child .proof-card strong { color: #f0a17f; }
+.proof-card span { font-size: 0.95rem; line-height: 1.5; color: var(--ink-2); }
+.proof li:first-child .proof-card span { color: #d8d2c6; }
+.proof-card em { font-style: normal; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.proof li:first-child .proof-card em { color: #b9b2a5; }
+.proof-card em::after { content: " \2192"; }
+.proof-card:hover { border-color: var(--accent); color: inherit; }
+@media (prefers-reduced-motion: no-preference) {
+  .proof-card { transition: transform 0.3s var(--ease), border-color 0.2s ease, box-shadow 0.3s ease; }
+  .proof-card:hover { transform: translateY(-3px); box-shadow: 0 18px 40px -28px rgba(40, 30, 10, 0.45); }
+}
