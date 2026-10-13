@@ -15,7 +15,7 @@ window.SITE = {
   about:
     "I'm not a software engineer and I don't claim to be one. I was a game designer at S Tier Studios from 2018 to 2021, where we shipped Cloud Runner and Fivehead Fever, until the studio closed. " +
     "After that I was communications director at a nonprofit, WHUMC (2021 to 2022), and a store manager at QuikTrip (2022 to 2024). " +
-    "For the past two years I've done AI training work for Handshake and Appen: rating model outputs, writing rubrics, and looking for the ways models go wrong. " +
+    "For the past two years I've worked as a contractor on AI training data projects for Handshake and Appen. " +
     "Building games and tools with AI coding agents on the side led me to the question I cared about most: whether I could trust what those agents told me, about their sources, about each other, " +
     "and about their own results. The research on this page is from the past few weeks; the games go back further. " +
     "Everything here says plainly who did what. I'm a US citizen, based in the US and authorized to work here.",
