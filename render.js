@@ -1,4 +1,4 @@
-// Draws the page from SITE and WORK in work.js. You shouldn't need to edit this file.
+// Draws the page from SITE and WORK in work.js. Content lives in work.js; this file is layout only.
 (function () {
   var S = window.SITE || {}, W = window.WORK || [];
   var SECTIONS = [["experiments", "Experiments"], ["other", "Other work"]];
@@ -27,18 +27,27 @@
   }
 
   document.title = (S.name || "Portfolio") + " · Portfolio";
+  // Image folder relative to this script, so the tailored page under for/<job>/ finds the same files.
+  var me = document.querySelector('script[src$="render.js"]');
+  var IMG = me ? me.getAttribute("src").replace(/render\.js$/, "") + "images/" : "images/";
+  var contacts = (S.contact || []).filter(function (c) { return c.url; }).map(function (c) {
+    var ext = c.url.indexOf("mailto:") === 0 ? "" : ' target="_blank" rel="noopener"';
+    return '<li><a href="' + esc(c.url) + '"' + ext + ">" + esc(c.label) + "</a></li>";
+  }).join("");
   document.getElementById("side").innerHTML =
-    '<div class="id">' +
-    (S.photo ? '<img class="photo" src="' + esc(S.photo) + '" alt="' + esc(S.name) + '">' : "") +
-    "<div><h1>" + esc(S.name) + '</h1><p class="role">' + esc(S.role) + "</p></div></div>" +
+    '<div class="hero-text">' +
+    '<p class="eyebrow">Portfolio</p>' +
+    "<h1>" + esc(S.name) + "</h1>" +
+    '<p class="role">' + esc(S.role) + "</p>" +
     '<p class="intro">' + esc(S.intro) + "</p>" +
-    (S.about ? '<p class="about">' + esc(S.about) + "</p>" : "") +
-    '<nav class="nav nav-side" aria-label="Sections">' + navLinks() + "</nav>" +
-    '<ul class="contact">' + (S.contact || []).filter(function (c) { return c.url; }).map(function (c) {
-      var ext = c.url.indexOf("mailto:") === 0 ? "" : ' target="_blank" rel="noopener"';
-      return '<li><a href="' + esc(c.url) + '"' + ext + ">" + esc(c.label) + "</a></li>";
-    }).join("") + "</ul>";
-  document.getElementById("navtop").innerHTML = navLinks();
+    '<ul class="contact">' + contacts + "</ul></div>" +
+    '<div class="collage" aria-hidden="true">' +
+    ["wobblins-study-night.jpg", "lootworks.jpg", "wobblins-2d-village.jpg"].map(function (f, i) {
+      return '<img class="c' + i + '" src="' + IMG + f + '" alt="">';
+    }).join("") + "</div>" +
+    (S.about ? '<div class="about"><h2 class="label">About</h2><p>' + esc(S.about) + "</p></div>" : "");
+  document.getElementById("navtop").innerHTML = '<a class="mark" href="#top">' + esc(S.name) + "</a>" + '<div class="nav nav-links">' + navLinks() + "</div>";
+
 
   // 95% Wilson interval for k of n, as fractions.
   function wilson(k, n) {
@@ -83,83 +92,104 @@
     var axis = ticks.map(function (t) { return '<span style="left:' + (100 * t / max).toFixed(2) + '%">' + t + "</span>"; }).join("");
     return '<figure class="chart"><div class="chart-head"><div class="legend">' +
       '<span><i style="background:var(--mem)"></i>' + esc(c.groups[0]) + "</span>" +
-      '<span><i style="background:var(--accent)"></i>' + esc(c.groups[1]) + "</span></div>" +
+      '<span><i style="background:var(--doc)"></i>' + esc(c.groups[1]) + "</span></div>" +
       (n ? '<span class="unit">of ' + n + " " + esc(c.unit || "") + "</span>" : "") + "</div>" +
       '<div class="bars">' + grid + rows + "</div>" +
       '<div class="axis"><span></span><div>' + axis + "</div></div>" +
       "<figcaption>" + esc(c.caption) + "</figcaption></figure>";
   }
 
-  function list(title, items) {
-    return items && items.length
-      ? '<div class="block"><h4>' + esc(title) + "</h4><ul>" + items.map(function (i) { return "<li>" + esc(i) + "</li>"; }).join("") + "</ul></div>"
+  function list(items) {
+    return "<ul>" + items.map(function (i) { return "<li>" + esc(i) + "</li>"; }).join("") + "</ul>";
+  }
+  // One tidy toggle per block. The first one (findings) is open on featured work.
+  function toggle(title, inner, open) {
+    return '<details class="more"' + (open ? " open" : "") + '><summary><span>' + esc(title) + '</span><i aria-hidden="true"></i></summary><div class="more-body">' + inner + "</div></details>";
+  }
+  function blocks(w) {
+    var out = [];
+    if (w.findings && w.findings.length) out.push(toggle("What it found", list(w.findings), w.featured));
+    if (w.method && w.method.length) out.push(toggle("How it was done", list(w.method), false));
+    if (w.limits) out.push(toggle("Limits", "<p>" + esc(w.limits) + "</p>", false));
+    if (w.prior) out.push(toggle("Prior work", "<p>" + esc(w.prior) + "</p>", false));
+    return out.length ? '<div class="toggles">' + out.join("") + "</div>" : "";
+  }
+  function linksOf(w) {
+    return w.links && w.links.length
+      ? '<ul class="links">' + w.links.map(function (l) { return "<li>" + link(l) + "</li>"; }).join("") + "</ul>"
       : "";
   }
-  function para(title, text) {
-    return text ? '<div class="block"><h4>' + esc(title) + "</h4><p>" + esc(text) + "</p></div>" : "";
+  function tagsOf(w) {
+    return w.tags && w.tags.length
+      ? '<ul class="tags" aria-label="Tags">' + w.tags.map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") + "</ul>"
+      : "";
+  }
+  function media(w, cls) {
+    if (!(w.images && w.images.length)) return "";
+    return '<figure class="media ' + (cls || "") + (w.images.length > 1 ? " multi" : "") + '">' + w.images.map(function (im, i) {
+      return '<img src="' + esc(im.src) + '" alt="' + esc(im.alt) + '"' + (cls === "thumb" ? ' loading="lazy"' : "") + ">";
+    }).join("") + "</figure>";
+  }
+  function meta(w) {
+    return '<div class="entry-meta"><span class="kind">' + esc(w.kind) + '</span><span class="date">' + esc(w.date) + "</span>" +
+      (w.featured ? '<span class="flag">Featured</span>' : "") + "</div>";
   }
   function entry(w) {
     if (w.section === "other") return compactEntry(w);
     var facts = w.facts && w.facts.length
-      ? '<dl class="facts">' + w.facts.map(function (f) { return "<div><dt>" + esc(f[0]) + "</dt><dd>" + esc(f[1]) + "</dd></div>"; }).join("") + "</dl>"
+      ? '<dl class="facts">' + w.facts.map(function (f) { return '<div class="chip"><dt>' + esc(f[0]) + "</dt><dd>" + esc(f[1]) + "</dd></div>"; }).join("") + "</dl>"
       : "";
-    var imgs = w.images && w.images.length
-      ? '<figure class="gallery">' + w.images.map(function (im) {
-          return '<img src="' + esc(im.src) + '" alt="' + esc(im.alt) + '" loading="lazy">';
-        }).join("") + "</figure>"
-      : "";
-    var body = list("What it found", w.findings) + list("How it was done", w.method) + para("Limits", w.limits) + para("Prior work", w.prior);
-    var more = body
-      ? '<details class="more"' + (w.featured ? " open" : "") + '><summary>Findings and method</summary><div class="more-body">' + body + "</div></details>"
-      : "";
-    var links = w.links && w.links.length
-      ? '<ul class="links">' + w.links.map(function (l) { return "<li>" + link(l) + "</li>"; }).join("") + "</ul>"
-      : "";
-    var tags = w.tags && w.tags.length
-      ? '<div class="tags">' + w.tags.map(function (t) { return "<span>" + esc(t) + "</span>"; }).join("") + "</div>"
-      : "";
-    var foot = links || tags ? '<div class="entry-foot">' + links + tags + "</div>" : "";
-    return '<article class="entry" id="' + esc(w.id) + '">' +
-      '<div class="entry-meta"><span class="kind">' + esc(w.kind) + '</span><span class="date">' + esc(w.date) + "</span></div>" +
-      "<h3>" + esc(w.title) + "</h3>" +
-      '<p class="payoff">' + esc(w.payoff) + "</p>" +
-      facts + (w.chart ? chart(w.chart) : "") + imgs + more + foot +
-      "</article>";
+    var vis = media(w, "cover") || (w.chart ? '<div class="media chart-wrap">' + chart(w.chart) + "</div>" : "");
+    var foot = linksOf(w) || tagsOf(w) ? '<div class="entry-foot">' + linksOf(w) + tagsOf(w) + "</div>" : "";
+    return '<article class="entry card reveal' + (w.featured ? " featured" : "") + '" id="' + esc(w.id) + '">' +
+      (w.images && w.images.length ? vis : "") +
+      '<div class="entry-head">' + meta(w) + "<h3>" + esc(w.title) + "</h3>" + '<p class="payoff">' + esc(w.payoff) + "</p></div>" +
+      (w.images && w.images.length ? "" : vis) + facts + blocks(w) + foot + "</article>";
   }
-
   function compactEntry(w) {
-    var links = w.links && w.links.length
-      ? '<ul class="links">' + w.links.map(function (l) { return "<li>" + link(l) + "</li>"; }).join("") + "</ul>"
-      : "";
-    var imgs = w.images && w.images.length
-      ? '<figure class="gallery small">' + w.images.map(function (im) {
-          return '<img src="' + esc(im.src) + '" alt="' + esc(im.alt) + '" loading="lazy">';
-        }).join("") + "</figure>"
-      : "";
-    return '<article class="entry compact" id="' + esc(w.id) + '">' +
-      '<div class="entry-meta"><span class="kind">' + esc(w.kind) + '</span><span class="date">' + esc(w.date) + "</span></div>" +
-      "<h3>" + esc(w.title) + "</h3>" +
-      '<p class="payoff">' + esc(w.payoff) + "</p>" + imgs +
-      (links ? '<div class="entry-foot">' + links + "</div>" : "") +
-      "</article>";
+    var foot = linksOf(w) || tagsOf(w) ? '<div class="entry-foot">' + linksOf(w) + tagsOf(w) + "</div>" : "";
+    var m = media(w, "thumb");
+    return '<article class="entry compact card reveal' + (m ? " has-media" : "") + '" id="' + esc(w.id) + '">' + m +
+      '<div class="compact-body">' + meta(w) + "<h3>" + esc(w.title) + "</h3>" +
+      '<p class="payoff">' + esc(w.payoff) + "</p>" + foot + "</div></article>";
   }
 
+  var num = 0;
+  function head(title, extra) {
+    num++;
+    return '<div class="sec-head"><span class="sec-num" aria-hidden="true">' + (num < 10 ? "0" : "") + num + "</span><h2>" + title + "</h2>" + (extra || "") + "</div>";
+  }
   document.getElementById("main").innerHTML =
     present.map(function (s) {
       var items = inSection(s[0]);
-      return '<section class="sec" id="' + s[0] + '"><div class="sec-head"><h2>' + s[1] + '</h2><span class="n">' + items.length + "</span></div>" +
-        items.map(entry).join("") + "</section>";
+      return '<section class="sec sec-' + s[0] + '" id="' + s[0] + '">' + head(s[1], '<span class="n">' + items.length + "</span>") +
+        '<div class="grid grid-' + s[0] + '">' + items.map(entry).join("") + "</div></section>";
     }).join("") +
     (S.next
-      ? '<section class="sec next" id="next"><div class="sec-head"><h2>' + esc(S.next.label) + "</h2></div>" +
+      ? '<section class="sec next band reveal" id="next">' + head(esc(S.next.label)) +
         (S.next.title ? "<h3>" + esc(S.next.title) + "</h3>" : "") + "<p>" + esc(S.next.text) + "</p></section>"
       : "") +
-    (S.why ? '<section class="sec next" id="why"><div class="sec-head"><h2>Why I do this</h2></div><p>' + esc(S.why) + "</p></section>" : "") +
+    (S.why ? '<section class="sec why reveal" id="why">' + head("Why I do this") + "<p>" + esc(S.why) + "</p></section>" : "") +
     "<footer>© " + new Date().getFullYear() + " · Numbers on this page come from each project's saved results and run logs. Links marked coming soon are not public yet.</footer>";
+
+  // Reveal cards as they scroll in, unless the viewer prefers reduced motion.
+  (function () {
+    var ok = window.matchMedia && window.matchMedia("(prefers-reduced-motion: no-preference)").matches && "IntersectionObserver" in window;
+    if (!ok) return;
+    var els = document.querySelectorAll(".reveal");
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { rootMargin: "0px 0px -8% 0px" });
+    Array.prototype.forEach.call(els, function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight) return;
+      el.classList.add("pre"); io.observe(el);
+    });
+  })();
 
   // Highlight the section in view in both navs.
   var targets = Array.prototype.slice.call(document.querySelectorAll("#main > section"));
-  var links = Array.prototype.slice.call(document.querySelectorAll(".nav a"));
+  var links = Array.prototype.slice.call(document.querySelectorAll(".nav a:not(.mark)"));
   var ticking = false, lastId = "";
   function spy() {
     ticking = false;
@@ -170,7 +200,7 @@
     if (cur.id === lastId) return;
     lastId = cur.id;
     links.forEach(function (a) { a.setAttribute("aria-current", a.getAttribute("href") === "#" + cur.id ? "true" : "false"); });
-    var top = document.querySelector('.nav-top a[aria-current="true"]');
+    var top = document.querySelector('.nav-links a[aria-current="true"]');
     if (top && top.parentNode.scrollWidth > top.parentNode.clientWidth) {
       top.parentNode.scrollTo({ left: Math.max(0, top.offsetLeft - 16), behavior: "smooth" });
     }
